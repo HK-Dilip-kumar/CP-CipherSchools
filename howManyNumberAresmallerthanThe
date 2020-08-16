@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<int> smallerNumbersThanCurrent(vector<int>& nums) {
+        vector<int> newNum;
+        vector<int>::iterator i;
+        vector<int>::iterator j;
+        int c;
+        for(i=nums.begin();i!=nums.end();i++)
+        {
+            c=0;
+            for(j=nums.begin();j!=nums.end();j++)
+            {
+                if(*i>*j)
+                {
+                    c++;
+                } 
+            }
+            newNum.push_back(c);
+        }
+    return newNum;
+    }
+};
