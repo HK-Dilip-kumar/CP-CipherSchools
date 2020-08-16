@@ -1,0 +1,33 @@
+the back of the vector A */
+void add_to_vector(vector<int> &A,int x)
+{
+	//Your code here
+	A.push_back(x);
+}
+void sort_vector_asc(vector<int> &A)
+{
+	sort(A.begin(),A.end());
+}
+void reverse_vector(vector<int> &A)
+{
+	reverse(A.begin(),A.end());
+}
+int size_of_vector(vector<int> &A)
+{
+	return A.size();
+}
+void sort_vector_desc(vector<int> &A)
+{
+	sort(A.begin(),A.end(),greater<int>());
+	
+}
+void print_vector(vector<int> &A)
+{
+	//Your code here
+	int n,i;
+	n= A.size();
+	for(i=0;i<n;i++)
+	{
+	    cout<<A.at(i)<<" ";
+	}
+}
