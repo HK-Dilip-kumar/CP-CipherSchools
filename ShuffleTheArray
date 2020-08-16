@@ -1,0 +1,19 @@
+ vector<int>v;
+    int sz=nums.size();
+    int first=0;
+    int second=n;
+    int i=0;
+    while(second<sz){
+        if(i%2==0){
+            v.push_back(nums[first]);
+            first++;
+        }
+        else{
+            v.push_back(nums[second]);
+            second++;
+        }
+        i++;
+    }
+    return v;
+}
+};
