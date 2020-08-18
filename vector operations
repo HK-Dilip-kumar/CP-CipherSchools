@@ -1,8 +1,5 @@
-the back of the vector A */
 void add_to_vector(vector<int> &A,int x)
-{
-	//Your code here
-	A.push_back(x);
+{	A.push_back(x);
 }
 void sort_vector_asc(vector<int> &A)
 {
@@ -22,9 +19,7 @@ void sort_vector_desc(vector<int> &A)
 	
 }
 void print_vector(vector<int> &A)
-{
-	//Your code here
-	int n,i;
+{	int n,i;
 	n= A.size();
 	for(i=0;i<n;i++)
 	{
