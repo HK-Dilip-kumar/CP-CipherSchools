@@ -1,0 +1,22 @@
+class Solution {
+public:
+    vector<vector<int>> generate(int numRows) {
+        vector<vector<int>> triangle;
+        for(unsigned i=0; i < numRows; i++){
+            vector<int> rows;
+            // Add 1 at the beginning of every row
+            rows.push_back(1);
+            for(unsigned j=1; j < i; j++){
+                // Compute the current row element
+                rows.push_back(triangle[i-1][j-1] + triangle[i-1][j]);
+            }
+            if(i>0){
+                // Add 1 at the end of every row (except the first)
+                rows.push_back(1);
+            }
+            // Add the constructed row to the triangle
+            triangle.push_back(rows);
+        }
+        return triangle;
+    }
+};
