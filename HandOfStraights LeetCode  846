@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool isNStraightHand(vector<int>& hand, int W) {
+        map<int, int> count;
+        for (int card: hand) {
+            if (count.find(card) == count.end())
+                count[card] = 1;
+            else
+                count[card] += 1;
+        }
+
+        while (count.size() > 0) {
+            int first = count.begin()->first;
+            for (int card = first; card < first + W; ++card) {
+                if (count.find(card) == count.end()) return false;
+                int c = count[card];
+                if (c == 1) count.erase(card);
+                else count[card] = c - 1;
+            }
+        }
+
+        return true;
+    }
+};
