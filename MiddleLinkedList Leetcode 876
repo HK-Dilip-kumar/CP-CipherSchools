@@ -1,0 +1,28 @@
+class Solution {
+public:
+    ListNode *middleNode(ListNode *head) {
+        int count = 0,count1 = 0;
+        ListNode *newnode;
+        newnode = head;
+        while (newnode != NULL) {
+            count++;
+            newnode = newnode->next;
+        }
+        if(count % 2 == 0){
+            newnode = head;
+            while(count1 != count/2){
+                newnode = newnode->next;
+                count1++;
+            }
+        }
+        else{
+            newnode = head;
+            while(count1 != (count/2))
+            {
+                newnode = newnode->next;
+                count1 ++ ;
+            }
+        }
+        return newnode;
+    }
+};
