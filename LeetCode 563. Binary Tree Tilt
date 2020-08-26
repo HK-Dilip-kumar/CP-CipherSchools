@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int findTilt(TreeNode* root) {
+        if(!root)
+            return 0;
+        int left_tilt = findTilt(root->left);
+        int right_tilt = findTilt(root->right);
+        int left_val = root->left ? root->left->val : 0;
+        int right_val = root->right ? root->right->val : 0;
+        root->val += left_val + right_val;
+        return abs(right_val - left_val) + left_tilt + right_tilt;
+    }
+};
