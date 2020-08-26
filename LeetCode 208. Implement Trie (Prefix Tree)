@@ -1,0 +1,47 @@
+class node{
+    public:
+    map<char, node *> m;
+    bool isEnd;
+};
+
+class Trie {
+public:
+
+    node * root;
+    Trie() {
+        root = new node();
+        root->isEnd = false;
+    }
+    void insert(string word) {
+        node * curr = root;
+        for(int i = 0;i<word.length();i++){
+            char c = word[i];
+            if(!curr->m[c]){
+                node * newnode = new node();
+                newnode->isEnd = false;
+                curr->m[c] = newnode;
+            }
+            curr = curr->m[c];
+        }
+        curr->isEnd = true;
+    }
+    bool search(string word) {
+        node * curr = root;
+        for(int i = 0;i<word.length();i++){
+            char c =word[i];
+            if(!curr->m[c]) return false;
+            curr = curr->m[c];
+        }
+        return (curr && curr->isEnd);
+    }
+    bool startsWith(string prefix) {
+        node * curr = root;
+        for(int i = 0;i<prefix.length();i++){
+            char c =prefix[i];
+            if(!curr->m[c]) return false;
+            curr = curr->m[c];
+        }
+        
+        return (curr || curr->isEnd);
+    }
+};
