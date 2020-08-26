@@ -1,0 +1,21 @@
+class Solution {
+public:
+
+int ans=INT_MIN;
+int check(TreeNode* root)
+{
+    if(!root)return 0;
+    int left=check(root->left);
+    int right=check(root->right);
+    int q=left+root->val;
+    int w=right+root->val;
+    int e=left+right+root->val;
+    int r=root->val;
+    ans=max(q,max(w,max(e,max(ans,r))));
+    return max(q,max(w,r));
+}
+int maxPathSum(TreeNode* root) {
+    check(root);
+    return ans;
+}
+};
