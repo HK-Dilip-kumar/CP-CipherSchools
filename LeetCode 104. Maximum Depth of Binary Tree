@@ -1,0 +1,44 @@
+class Solution {
+public:
+    int maxDepth(TreeNode* root) {
+        nDepth = 0;
+        vector<TreeNode*> vecNode = {root};
+        calcMaxDepth(vecNode);
+        return nDepth;
+    }
+private:
+    void calcMaxDepth(vector<TreeNode*> &vecNode)
+    {
+        vector<TreeNode*> vecNewNode;
+        for(TreeNode* node : vecNode)
+        {
+            if(nullptr != node)
+            {
+                vecNewNode.push_back(node);
+            }
+        }
+        
+        if(0 == vecNewNode.size())
+        {
+            return;
+        }
+        else
+        {
+            ++nDepth;
+            vecNode.clear();
+            for(TreeNode* node : vecNewNode)
+            {
+                if(nullptr == node)
+                {
+                   continue;
+                }
+                vecNode.push_back(node->left);
+                vecNode.push_back(node->right);
+            }
+            return calcMaxDepth(vecNode);
+        }
+    }
+    
+private:
+    int nDepth;
+};
