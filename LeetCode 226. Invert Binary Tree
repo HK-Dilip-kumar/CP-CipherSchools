@@ -1,0 +1,32 @@
+class Solution {
+public:
+    TreeNode* invertTree(TreeNode* root) {
+        if(root==nullptr)
+        {
+            return root;
+        }
+        
+        invert(root,root->left,root,root->right);
+        return root;
+    }
+    
+    void invert(TreeNode* pl, TreeNode* l, TreeNode* pr, TreeNode* r)
+    {
+        if(l==nullptr && r==nullptr) 
+        {
+            return;
+        }
+        
+        if(l) invert(l,l->left,l,l->right);
+        if(r) invert(r,r->left,r,r->right);
+        
+        bool ll=(l==pl->left);
+        bool rl=(r==pr->left);
+        if(ll) pl->left=r;
+        else pl->right=r;
+        
+        if(rl) pr->left=l;
+        else pr->right=l;
+            
+    }
+};
