@@ -1,0 +1,22 @@
+class Solution {
+    int dfs(TreeNode*root, int deep) {
+        if(!root) {
+            return deep;
+        }
+        auto ldeep = dfs(root->left, deep + 1);
+        auto rdeep = dfs(root->right, deep + 1);
+        if(abs(ldeep - rdeep) > 1) {
+            throw int{};
+        }
+        return max(ldeep, rdeep);
+    }
+public:
+    bool isBalanced(TreeNode* root) {
+        try {
+            dfs(root, 0);
+            return true;
+        } catch(...) {
+            return false;   
+        }
+    }
+};
