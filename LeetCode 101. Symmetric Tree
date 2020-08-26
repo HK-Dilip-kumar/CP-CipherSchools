@@ -1,0 +1,47 @@
+class Solution {
+public:
+    vector<int> arr1;
+    vector<int> arr2;
+    bool isSymmetric(TreeNode* root) {
+        Postorder1(root);
+        Postorder2(root);
+        int flag=0;
+        int x=arr1.size();
+        for(int i=0;i<x;i++)
+        {
+            if(arr1[i]!=arr2[i])
+            {
+                flag=1;
+                break;
+            }
+        }
+        if(flag==1)
+            return false;
+        else
+            return true;
+    }
+    
+    void Postorder1(TreeNode* root)
+    {
+        if(root==NULL)
+        {
+            arr1.push_back(INT_MIN);
+            return;
+        }
+            
+        Postorder1(root->left);
+        Postorder1(root->right);
+        arr1.push_back(root->val);
+    }
+    void Postorder2(TreeNode* root)
+    {
+        if(root==NULL)
+        {
+            arr2.push_back(INT_MIN);
+            return;
+        }
+        Postorder2(root->right);       
+        Postorder2(root->left);
+        arr2.push_back(root->val);
+    }
+};
