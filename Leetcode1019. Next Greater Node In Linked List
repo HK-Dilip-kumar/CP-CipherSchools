@@ -1,0 +1,29 @@
+class Solution {
+public:
+    vector<int> nextLargerNodes(ListNode* head) {        
+        int len = findLength(head), i = 0;
+        vector<int> result(len);
+        stack<pair<int, int>> stk;
+        auto cur = head;
+        
+        while (cur) {
+            while (!stk.empty() and cur->val > stk.top().first) {
+                auto [ele, index] = stk.top(); stk.pop();
+                result[index] = cur->val;
+            }
+            
+            stk.push({cur->val, i++}); 
+            cur = cur->next;
+        }
+        
+        return result;
+    }
+    
+    int findLength(ListNode* head) {
+        int len = 0;
+        while (head)
+            len++, head = head->next;
+        
+        return len;
+    }
+};
