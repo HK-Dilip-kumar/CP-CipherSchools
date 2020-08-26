@@ -1,0 +1,22 @@
+class Solution {
+public:
+    TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
+        int pv = p->val;
+        int qv = q->val;
+        TreeNode* node = root;
+        while (node != NULL) {
+            int parv = node->val;
+
+            if (pv > parv && qv > parv) {
+                node = node->right;
+            } else if (pv < parv && qv < parv) {
+                node = node->left;
+            } else {
+                return node;
+            }
+        }
+        return NULL;
+
+        
+    }
+};
