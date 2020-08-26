@@ -1,0 +1,16 @@
+class Solution {
+ public:
+  bool isValidBST(TreeNode *root) {
+      return recurse(root, LONG_MIN, LONG_MAX);
+  }
+
+  bool recurse(TreeNode *root, long lower, long upper) {
+      if (!root) return true;
+
+      long val = root->val;
+      if ((val <= lower) || (val >= upper)) {
+          return false;
+      }
+      return recurse(root->left, lower, val) and recurse(root->right, val, upper);
+  }
+};
