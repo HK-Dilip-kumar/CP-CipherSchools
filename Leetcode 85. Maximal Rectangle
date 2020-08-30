@@ -1,0 +1,43 @@
+class Solution {
+public:
+    int maxhist(vector<char> mat)
+    {
+        stack<int> s;
+        int i=0;
+        int ans=0;
+        int curr=0;
+        while(i<mat.size())
+        {
+            if(s.empty() || mat[s.top()]<=mat[i]){s.push(i++);}
+            else
+            {
+                int t=s.top();
+                s.pop();
+                curr=(mat[t]-'0')*(s.empty()?i:i-s.top()-1);
+                ans=max(curr,ans);
+            }
+        }
+        while(!s.empty())
+        {
+            int t=s.top();
+            s.pop();
+            curr=(mat[t]-'0')*(s.empty()?i:i-s.top()-1);
+            ans=max(curr,ans);
+        }
+        return ans;
+    }
+    int maximalRectangle(vector<vector<char>>& matrix) {
+        int ans=0;
+        for(int i=0;i<matrix.size();i++)
+        {
+            if(i!=0)
+            {
+                for(int j=0;j<matrix[i].size();j++)
+                    matrix[0][j]=matrix[i][j]=='0'?'0':matrix[0][j]+matrix[i][j]-'0';
+            }
+            
+            ans=max(ans,maxhist(matrix[0]));cout<<ans;
+        }
+        return ans;
+    }
+};
