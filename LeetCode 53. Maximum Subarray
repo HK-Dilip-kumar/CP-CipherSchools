@@ -1,0 +1,13 @@
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        std::vector<int> sumArray(nums.size(), 0);
+        int currentMax = nums[0];
+        sumArray[0] = nums[0];
+        for(unsigned int i = 1; i < nums.size(); i++) {
+            sumArray[i] = std::max(sumArray[i - 1] + nums[i], nums[i]);
+            currentMax = std::max(sumArray[i], currentMax);
+        }
+        return currentMax;
+    }
+};
