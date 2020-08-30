@@ -1,0 +1,14 @@
+class Solution {
+public:
+    int lengthOfLIS(vector<int>& nums) {
+        vector<int> dp;
+        for(int x : nums) {
+            int idx = lower_bound(dp.begin(), dp.end(), x) - dp.begin();
+            if(idx < dp.size()) 
+                dp[idx] = x;
+            else 
+                dp.push_back(x);
+        }
+        return dp.size();
+    }
+};
