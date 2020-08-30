@@ -1,0 +1,11 @@
+class Solution {
+public:
+int maximalSquare(vector<vector< char>>& m) {
+char max1='0';
+for(int i=0;i<m.size();i++)
+for(int j=0;j<m[0].size();j++)
+{if(m[i][j]=='1'&& i>0 && j>0) m[i][j]=char(1+ min(m[i-1][j-1],min(m[i-1][j],m[i][j-1])));
+if(m[i][j]>max1)max1=m[i][j];}
+return int(max1-'0')*int(max1-'0');
+}
+};
