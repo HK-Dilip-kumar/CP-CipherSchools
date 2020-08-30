@@ -1,0 +1,47 @@
+class Solution {
+public:
+    
+    int dir[5] = {0, 1, 0, -1, 0};
+    int rows, cols;
+    
+    int dfs(int i, int j, vector<vector<int>>& grid) {
+        grid[i][j] = -1;
+        int per = 0;
+        
+        for(int k=0; k<4; k++) {
+            int x = i + dir[k];
+            int y = j + dir[k+1];
+            if(x<0 || y<0 || x>=rows || y>=cols || grid[x][y] == 0) {
+                per += 1;
+                continue;
+            }
+            if(grid[x][y] == -1) {
+                continue;
+            }
+            
+            per += dfs(x, y, grid);
+        }
+        
+        return per;
+    }
+    
+    int islandPerimeter(vector<vector<int>>& grid) {
+        if(grid.empty() || grid[0].empty()) {
+            return 0;
+        }
+        
+        int per = 0;
+        rows = grid.size();
+        cols = grid[0].size();
+        
+        for(int i=0; i<rows; i++) {
+            for(int j=0; j<cols; j++) {
+                if(grid[i][j] == 1) {
+                    per += dfs(i, j, grid);
+                }
+            }
+        }
+        
+        return per;
+    }
+};
