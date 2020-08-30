@@ -1,0 +1,35 @@
+class Solution {
+public:
+    int dfs(vector<vector<int>>& grid,int i,int j,int r,int c)
+    {
+        if(i<0 || i>=r || j<0 || j>=c || grid[i][j]!=1)
+        {
+            return 0;
+        }
+        grid[i][j]=2;
+        int count=1;
+        count+=dfs(grid,i-1,j,r,c);
+        count+=dfs(grid,i+1,j,r,c);
+        count+=dfs(grid,i,j-1,r,c);
+        count+=dfs(grid,i,j+1,r,c);
+        return count;
+    }
+    int maxAreaOfIsland(vector<vector<int>>& grid) {
+        if(grid.size()==0)
+        {
+            return 0;
+        }
+        int maxx=0;
+        for(int i=0;i<grid.size();i++)
+        {
+            for(int j=0;j<grid[0].size();j++)
+            {
+                if(grid[i][j]==1)
+                {
+                    maxx=max(maxx,dfs(grid,i,j,grid.size(),grid[0].size()));
+                }
+            }
+        }
+        return maxx;
+    }
+};
